@@ -1,0 +1,10 @@
+.pytest_cache
+__pycache__/
+venv/
+Makefile
+.env
+.git
+.gitignore
+compose.yml
+README.md
+pre-requisites.sh

@@ -1,0 +1,27 @@
+version: '3.9'
+services:
+  student-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: student-api:1.0.0
+    container_name: student-api
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+      PORT: ${PORT}
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    restart: always
+
+  db:          #this should be same as the "db" in env URL "....@db:5432...." 
+    image: postgres:15-alpine
+    container_name: student-db
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports: 
+      - "5432:5432"
+    restart: always
