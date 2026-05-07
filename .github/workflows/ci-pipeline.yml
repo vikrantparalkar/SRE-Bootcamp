@@ -1,0 +1,27 @@
+name: sre-bootcamp-cicd
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - "main"
+    paths:
+      - "REST_API/*"
+
+env:
+  DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+  DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+
+jobs:
+  build-and-push :
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6.0.2
+        run: 
+      
+      - name: Checkout code
+        uses: actions/checkout@v6.0.2
+        
+      - name: Checkout code
+        uses: actions/checkout@v6.0.2
