@@ -1,3 +1,6 @@
+# -------------------------------------------------
+# FOR BOTH CONTAINER START AND CONNECT
+
 start-db:
 	docker compose up -d db
 
@@ -20,3 +23,26 @@ run-all:
 
 stop-all:
 	docker compose down
+
+# -------------------------------------------------
+# FOR CI PIPELINE
+
+install:
+	pip install -r requirements.txt
+
+tests:
+	flake8 ./REST_API/  #to find bugs, errors and syntatical errors.
+
+tests:
+	pytest -v
+
+build:
+	docker build -t ${DOCKER_USERNAME}/student-api:1.0.0 .
+
+docker-login:
+	echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
+	#"--password-stdin" read password from input stream
+
+push:
+	docker push ${DOCKER_USERNAME}/student-api:1.0.0
+
