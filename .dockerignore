@@ -9,3 +9,4 @@ compose.yml
 README.md
 pre-requisites.sh
 actions-runner/
+.github/workflows/
