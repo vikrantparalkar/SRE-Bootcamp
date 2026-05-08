@@ -4,4 +4,3 @@ venv/
 .env
 .gitignore
 actions-runner/
-.github/workflows/
