@@ -15,7 +15,6 @@ logging.basicConfig(level=logging.INFO)
 # create DB (simple migration ✔)
 with app.app_context():
     db.create_all()
-
 # -------------------------
 # HEALTHCHECK ✔
 # -------------------------
@@ -24,7 +23,6 @@ with app.app_context():
 
 def health():
     return jsonify({"status": "OK"}), 200
-
 # -------------------------
 # CREATE ✔
 # -------------------------
@@ -33,7 +31,6 @@ def health():
 
 def create_student():
     data = request.get_json()
-
     student = Student(
         name=data.get('name'),
         age=data.get('age')
@@ -54,9 +51,7 @@ def create_student():
 
 def get_students():
     logging.info("Fetching all students")
-
     students = Student.query.all()
-
     result = []
     for s in students:
         result.append({
@@ -66,7 +61,6 @@ def get_students():
         })
 
     return jsonify(result), 200
-
 # -------------------------
 # READ ONE ✔
 # -------------------------
@@ -76,10 +70,10 @@ def get_students():
 def get_student(id):
     student = Student.query.get(id)
 
+
     if not student:
         logging.error("Student not found")
         return jsonify({"error": "Not found"}), 404
-
     return jsonify({
         "id": student.id,
         "name": student.name,
@@ -94,6 +88,7 @@ def get_student(id):
 
 def update_student(id):
     student = Student.query.get(id)
+
 
     if not student:
         return jsonify({"error": "Not found"}), 404
@@ -134,4 +129,3 @@ def delete_student(id):
 if __name__ == '__main__':
     # app.run(port=5000, debug=True) #in docker container it should run with 0.0.0.0 as a host NOT as a [localhost] 127.0.0.1 Otherwise container port is not accessible outside. 
     app.run(host="0.0.0.0", port=5000, debug=True)
-
