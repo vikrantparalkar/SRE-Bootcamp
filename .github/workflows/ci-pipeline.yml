@@ -36,7 +36,7 @@ jobs:
       - name: Testing
         run: make tests
         env:
-          DATABASE_URL: "sqlite:///test.db"
+          DATABASE_URL: "sqlite:///test.db"  # THIS IS ADDED JUST TO PASS THE DB CONNECTION URL CHECK AVAILABILITY TEST BY PYTEST, ADDED THIS COZ WE ARE GOING TO USE THAT REAL URL CONNECTION OF DB TO MAIN CONTAINER IN K8S, AND WE WILL BE SAFE FROM USING THE ENV VALUES HERE
 
       - name: docker build
         run: make build

@@ -17,7 +17,7 @@ run:
 	docker run --name student-api -p 5000:5000 student-api:1.0.0
 
 # -------------------------------------------------
-# FOR BOTH CONTAINER START AND CONNECT
+# FOR BOTH CONTAINER START AND CONNECT LOCALLY
 
 start-db:
 	docker compose up -d db
