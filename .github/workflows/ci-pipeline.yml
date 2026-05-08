@@ -27,6 +27,9 @@ jobs:
       - name: Install Dependencies
         run: pip install -r ./REST_API/requirements.txt
 
+      - name: Python flake8 Lint
+        uses: py-actions/flake8@v2.3.0
+
       - name: Code Checks
         run: make codechecks
       
