@@ -20,6 +20,8 @@ with app.app_context():
 # HEALTHCHECK ✔
 # -------------------------
 @app.route('/healthcheck', methods=['GET'])
+
+
 def health():
     return jsonify({"status": "OK"}), 200
 
@@ -27,6 +29,8 @@ def health():
 # CREATE ✔
 # -------------------------
 @app.route('/api/v1/students', methods=['POST'])
+
+
 def create_student():
     data = request.get_json()
 
@@ -46,6 +50,8 @@ def create_student():
 # READ ALL ✔
 # -------------------------
 @app.route('/api/v1/students', methods=['GET'])
+
+
 def get_students():
     logging.info("Fetching all students")
 
@@ -65,6 +71,8 @@ def get_students():
 # READ ONE ✔
 # -------------------------
 @app.route('/api/v1/students/<int:id>', methods=['GET'])
+
+
 def get_student(id):
     student = Student.query.get(id)
 
@@ -82,6 +90,8 @@ def get_student(id):
 # UPDATE ✔
 # -------------------------
 @app.route('/api/v1/students/<int:id>', methods=['PUT'])
+
+
 def update_student(id):
     student = Student.query.get(id)
 
@@ -103,6 +113,8 @@ def update_student(id):
 # DELETE ✔
 # -------------------------
 @app.route('/api/v1/students/<int:id>', methods=['DELETE'])
+
+
 def delete_student(id):
     student = Student.query.get(id)
 
@@ -122,4 +134,4 @@ def delete_student(id):
 if __name__ == '__main__':
     # app.run(port=5000, debug=True) #in docker container it should run with 0.0.0.0 as a host NOT as a [localhost] 127.0.0.1 Otherwise container port is not accessible outside. 
     app.run(host="0.0.0.0", port=5000, debug=True)
-    
+
