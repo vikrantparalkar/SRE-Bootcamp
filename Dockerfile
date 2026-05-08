@@ -12,7 +12,7 @@ WORKDIR /app
 
 COPY --from=builder /root/.local /root/.local
 
-COPY ./REST_API/* .
+COPY ./REST_API/* /
 
 ENV PATH=/root/.local/bin:$PATH
 
