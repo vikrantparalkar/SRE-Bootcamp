@@ -128,4 +128,4 @@ def delete_student(id):
 # RUN SERVER
 # --------------------------
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True) #here basically the url cant be of localhost [127.0.0.1] coz docker will not be able to listen it properly

@@ -1,4 +1,22 @@
 # -------------------------------------------------
+# TO BUILD AND RUN REST_API LOCALLY
+
+build:
+	pytest -v
+
+run:
+	python app.py   #db schema migration happens here
+
+# -------------------------------------------------
+# FOR CONTAINERIZE REST_API
+
+build:
+	docker build -t student-api:1.0.0 .
+
+run:
+	docker run --name student-api -p 5000:5000 student-api:1.0.0
+
+# -------------------------------------------------
 # FOR BOTH CONTAINER START AND CONNECT
 
 start-db:
@@ -12,6 +30,7 @@ start-api:
 
 migrate-db:
 	docker exec student-db psql -U postgres -d students -c "\dt"
+	# creates tables in db
 
 run-all:
 	make start-db
@@ -35,6 +54,7 @@ tests:
 
 codechecks:
 	flake8 ./REST_API/
+	#to run the code quality, formatting checks
 
 build:
 	docker build -t ${DOCKER_USERNAME}/student-api:1.0.0 .
