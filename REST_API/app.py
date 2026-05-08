@@ -122,3 +122,4 @@ def delete_student(id):
 if __name__ == '__main__':
     # app.run(port=5000, debug=True) #in docker container it should run with 0.0.0.0 as a host NOT as a [localhost] 127.0.0.1 Otherwise container port is not accessible outside. 
     app.run(host="0.0.0.0", port=5000, debug=True)
+    
