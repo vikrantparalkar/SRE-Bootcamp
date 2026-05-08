@@ -34,7 +34,7 @@ tests:
 	pytest -v
 
 codechecks:
-	flake8 ./REST_API/  #to find bugs, errors and syntatical errors.
+	flake8 ./REST_API/
 
 build:
 	docker build -t ${DOCKER_USERNAME}/student-api:1.0.0 .
