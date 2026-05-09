@@ -28,8 +28,8 @@ def health():
         "hostname": socket.gethostname()
     }), 200
 # if accessed successfully you will get the status OK 200 and will also
-# get the hostname of the conatiner from which its is coming, coz we 
-# have 2 api containers and nginx is loadbalancing them 
+# get the hostname of the conatiner from which its is coming, coz we
+# have 2 api containers and nginx is loadbalancing them
 
 
 # -------------------------
