@@ -1,0 +1,54 @@
+version: '3.9'
+services:
+  student-api-1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # image: student-api:1.0.0
+    container_name: student-api-1
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+      PORT: ${PORT}
+    ports:
+      - "8081:5000"
+    depends_on:
+      - db
+    restart: always
+
+  student-api-2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # image: student-api:1.0.0
+    container_name: student-api-2
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+      PORT: ${PORT}
+    ports:
+      - "8082:5000"  # 8082 [it hosts]:5000 [container listens]
+    depends_on:
+      - db
+    restart: always
+
+  db:          #this should be same as the "db" in env URL "....@db:5432...." 
+    image: postgres:15-alpine
+    container_name: student-db
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports: 
+      - "5432:5432"
+    restart: always
+
+  nginx:          #this should be same as the "db" in env URL "....@db:5432...." 
+    image: nginx:latest
+    container_name: nginx
+    ports: 
+      - "8080:8080"
+    depends_on:
+      - student-api-1
+      - student-api-2
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf  # used to pass the config to the nginx's container folder
+    restart: always

@@ -1,19 +1,19 @@
 # -------------------------------------------------
 # TO BUILD AND RUN REST_API LOCALLY
 
-build:
+build-l:
 	pytest -v
 
-run:
+run-l:
 	python app.py   #db schema migration happens here
 
 # -------------------------------------------------
 # FOR CONTAINERIZE REST_API
 
-build:
+build-c:
 	docker build -t student-api:1.0.0 .
 
-run:
+run-c:
 	docker run --name student-api -p 5000:5000 student-api:1.0.0
 
 # -------------------------------------------------
@@ -22,7 +22,7 @@ run:
 start-db:
 	docker compose up -d db
 
-build:
+build-img:
 	docker compose build
 
 start-api:
@@ -30,12 +30,12 @@ start-api:
 
 migrate-db:
 	docker exec student-db psql -U postgres -d students -c "\dt"
-	# creates tables in db
+#	creates tables in db
 
 run-all:
 	make start-db
 	sleep 5      #stops 5 secs
-	make build
+	make build-img
 	make start-api
 	sleep 5  
 	make migrate-db
@@ -54,15 +54,25 @@ tests:
 
 codechecks:
 	flake8 ./REST_API/
-	#to run the code quality, formatting checks
+#	to run the code quality, formatting checks
 
 build:
 	docker build -t ${DOCKER_USERNAME}/student-api:1.0.0 .
 
 docker-login:
 	echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
-	#"--password-stdin" read password from input stream
+#	"--password-stdin" read password from input stream
 
 push:
 	docker push ${DOCKER_USERNAME}/student-api:1.0.0
+
+# -------------------------------------------------
+# FOR VAGRANT BOX SETUP
+
+run-vm:
+	docker compose -f dockercompose-VM.yml up -d
+# 	container runs in detach mode
+
+stop-vm:
+	docker compose -f dockercompose-VM.yml down
 

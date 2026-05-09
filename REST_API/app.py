@@ -2,6 +2,7 @@ import logging
 from flask import Flask, request, jsonify
 from config import Config
 from models import db, Student
+import socket
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -22,7 +23,13 @@ with app.app_context():
 # -------------------------
 @app.route('/healthcheck', methods=['GET'])
 def health():
-    return jsonify({"status": "OK"}), 200
+    return jsonify({
+        "status": "OK",
+        "hostname": socket.gethostname()
+    }), 200
+# if accessed successfully you will get the status OK 200 and will also
+# get the hostname of the conatiner from which its is coming, coz we 
+# have 2 api containers and nginx is loadbalancing them 
 
 
 # -------------------------
