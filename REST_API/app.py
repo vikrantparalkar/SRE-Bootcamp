@@ -16,6 +16,7 @@ logging.basicConfig(level=logging.INFO)
 # -------------------------
 # HEALTHCHECK
 # -------------------------
+
 @app.route('/healthcheck', methods=['GET'])
 def health():
     return jsonify({
