@@ -13,3 +13,4 @@ actions-runner/
 .vagrant
 scripts/
 nginx
+K8sManifests

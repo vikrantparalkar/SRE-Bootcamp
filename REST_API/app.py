@@ -13,11 +13,6 @@ db.init_app(app)
 # logging
 logging.basicConfig(level=logging.INFO)
 
-# create DB
-with app.app_context():
-    db.create_all()
-
-
 # -------------------------
 # HEALTHCHECK
 # -------------------------
