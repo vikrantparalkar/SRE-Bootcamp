@@ -49,12 +49,12 @@ stop-all:
 install:
 	pip install -r requirements.txt
 
-tests:
-	pytest -v
-
 codechecks:
 	flake8 ./REST_API/
 #	to run the code quality, formatting checks
+
+tests:
+	pytest -v
 
 build:
 	docker build -t ${DOCKER_USERNAME}/student-api:1.0.0 .
