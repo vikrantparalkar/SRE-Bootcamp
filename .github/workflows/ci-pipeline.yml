@@ -38,7 +38,7 @@ jobs:
         env:
           DATABASE_URL: "sqlite:///test.db"  
 # Because during CI tests, PostgreSQL container is not running,
-# So we use: sqlite:///test.db, which creates a small local test database automatically.
+# So we use: sqlite:///test.db, which creates a small local test database automatically
 
       - name: docker build
         run: make build
