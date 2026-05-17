@@ -36,7 +36,7 @@ spec:
       initContainers:
       - name: db-migration
 
-        image: vikrantparalkar21/student-api:1.0.0
+        image: vikrantparalkar21/student-api:1.0.1
 
         command:
          - sh
@@ -60,7 +60,7 @@ spec:
       containers:
       - name: restapi
 
-        image: vikrantparalkar21/student-api:1.0.0
+        image: vikrantparalkar21/student-api:1.0.1
 
         ports:
         - containerPort: 5000
