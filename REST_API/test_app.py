@@ -20,4 +20,3 @@ def test_create_student():
     })
 
     assert res.status_code == 201
-    
