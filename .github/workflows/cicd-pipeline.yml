@@ -8,6 +8,9 @@ on:
     paths:
       - "REST_API/*"
 
+permissions:
+  contents: write
+
 env:
   DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
