@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 
 metadata:
-  name: student-api-application
+  name: application-n-database
   namespace: argocd
 
 spec:
@@ -12,35 +12,6 @@ spec:
     repoURL: 'https://github.com/vikrantparalkar/SRE-Bootcamp.git'
     targetRevision: main
     path: helm/student-api
-
-    helm:
-      valueFiles:
-        - values.yaml
-
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: student-api
-
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-
----
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-
-metadata:
-  name: student-api-database
-  namespace: argocd
-
-spec:
-  project: default
-
-  source:
-    repoURL: 'https://github.com/vikrantparalkar/SRE-Bootcamp.git'
-    targetRevision: main
-    path: helm/postgres
 
     helm:
       valueFiles:

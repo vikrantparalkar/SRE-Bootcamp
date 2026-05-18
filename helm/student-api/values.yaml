@@ -10,3 +10,10 @@ service:
   type: NodePort
   port: 5000
   nodePort: 30000
+
+postgres:
+  image: postgres:15-alpine
+  database: students
+  storage: 1Gi
+  port: 5432
+  targetPort: 5432
