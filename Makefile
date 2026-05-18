@@ -57,14 +57,14 @@ tests:
 	pytest -v
 
 build:
-	docker build -t ${DOCKER_USERNAME}/student-api:1.0.1 .
+	docker build -t ${DOCKER_USERNAME}/student-api:${GITHUB_SHA::7} .
 
 docker-login:
 	echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
 #	"--password-stdin" read password from input stream
 
 push:
-	docker push ${DOCKER_USERNAME}/student-api:1.0.1
+	docker push ${DOCKER_USERNAME}/student-api:${GITHUB_SHA::7}
 
 # -------------------------------------------------
 # FOR VAGRANT BOX SETUP

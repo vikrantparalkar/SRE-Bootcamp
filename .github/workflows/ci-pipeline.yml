@@ -13,7 +13,8 @@ env:
   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
 jobs:
-  build-and-push :
+
+  build-n-push :
     runs-on: self-hosted
     steps:
       - name: Checkout code
@@ -48,3 +49,23 @@ jobs:
 
       - name: Push
         run: make push
+
+
+
+  deploy :
+    needs: build-n-push
+    runs-on: self-hosted
+    steps:
+
+      - name: Checkout code
+        uses: actions/checkout@v6.0.2
+        
+      - name: updating the "image tag" in values of helm
+        run: |
+          sed -i 's/tag:.*/tag:"'"${GITHUB_SHA::7}"'"/g' helm/student-api/templates/values.yaml
+          
+      - name: git commit changes
+        run: |
+          git add helm/student-api/templates/values.yaml
+          git commit -m "image-tag updated"
+          git push --set-upstream origin/main
